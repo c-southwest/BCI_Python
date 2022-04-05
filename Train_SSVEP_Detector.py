@@ -39,7 +39,7 @@ for filename in ssvep_none_psd_files:
 
 # 分配训练集 和 验证集
 val = []
-num_val = 60
+num_val = 45
 val.extend(ssvep_7_psd[:num_val])
 val.extend(ssvep_8_psd[:num_val])
 val.extend(ssvep_9_psd[:num_val])
@@ -76,7 +76,7 @@ val_label = np.array(val_label)
 
 inputs = keras.Input(shape=ssvep_7_psd[0][0].shape)  # 最后一个0代表数据本身，index=1为标签
 x = layers.Dense(8, activation="sigmoid")(inputs)
-# x = layers.Dense(8, activation="sigmoid")(x)
+#x = layers.Dense(8, activation="sigmoid")(x)
 # x = layers.Dense(16, activation="relu")(x)
 x = layers.Flatten()(x)
 # x = layers.Dropout(0.5)(x)
@@ -86,9 +86,9 @@ model.summary()
 
 model.compile(optimizer="rmsprop", loss=keras.losses.CategoricalCrossentropy(), metrics=["accuracy"])
 callbacks = [
-    keras.callbacks.ModelCheckpoint("ssvep_detect_model.keras", save_best_only=True)
+    keras.callbacks.ModelCheckpoint("ssvep_detect_model_wet.keras", save_best_only=True)
 ]
-history = model.fit(train_data, train_label, batch_size=32, epochs=200, validation_data=(val_data, val_label),
+history = model.fit(train_data, train_label, batch_size=64, epochs=500, validation_data=(val_data, val_label),
                     callbacks=callbacks)
 
 epochs = range(1, len(history.history["loss"]) + 1)
@@ -100,3 +100,15 @@ plt.plot(epochs, val_loss, "b", label="Validation loss")
 plt.title("Training and validation loss")
 plt.legend()
 plt.show()
+
+# plot accuracy
+epochs = range(1, len(history.history["accuracy"]) + 1)
+accuracy = history.history["accuracy"]
+val_accuracy = history.history["val_accuracy"]
+plt.figure()
+plt.plot(epochs, accuracy, "bo", label="Training accuracy")
+plt.plot(epochs, val_accuracy, "b", label="Validation accuracy")
+plt.title("Training and validation accuracy")
+plt.legend()
+plt.show()
+

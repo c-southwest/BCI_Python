@@ -8,14 +8,18 @@
 # print(s.recv(1024).decode("utf-8"))
 #
 # s.close()
-import time
-import winsound
+# import time
+# import winsound
+#
+#
+# winsound.Beep(500,500)
+# print(time.time())
+#
+#
+#
+import tensorflow.keras as keras
 
 
-winsound.Beep(500,500)
-print(time.time())
+model = keras.models.load_model("alpha_detect_model_1s_3.keras")
 
-
-
-
-
+print(model.summary())

@@ -18,19 +18,20 @@ nfft = 1024
 # Alpha Wave parameters
 # freq_left = 8
 # freq_right = 12
-freq_left = 6
-freq_right = 21
+freq_left = 4
+freq_right = 23
 order = 5
 
 # 数据读写设定
-data_dir = "data/SSVEP_7_2/"
+data_dir = "data/SSVEP_7_wet/"
 # Alpha Wave parameters
 # channels = [1, 2, 3, 4, 5, 6, 7, 8]
-channels = [7, 8]
+# channels = [7, 8]
+channels = [8]
 files = os.listdir(data_dir)
 time_window = 3
 slide_window = 0.5
-out_dir = "psd_data/SSVEP_7_2/"
+out_dir = "psd_data/SSVEP_7_wet/"
 
 for f in files:
     # 读取一条10s的数据

@@ -7,7 +7,7 @@ from brainflow.board_shim import BoardShim, BrainFlowInputParams, BoardIds
 from brainflow.data_filter import DataFilter
 import matplotlib.pyplot as plt
 time.sleep(2)
-for i in range(5):
+for i in range(3):
     # 参数定义 Cyton板的id=0，我机器上的串口号为COM3
     params = BrainFlowInputParams()
     params.serial_port = "COM3"
@@ -23,7 +23,7 @@ for i in range(5):
 
     # 收集t秒的数据
     t = 10
-    mode = "SSVEP_10_2"
+    mode = "SSVEP_None_wet"
     time.sleep(t)
     data = board.get_board_data()
 

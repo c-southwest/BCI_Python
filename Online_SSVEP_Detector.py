@@ -19,14 +19,14 @@ board = BoardShim(board_id, params)
 board.prepare_session()
 board.start_stream()
 
-channels = [1, 2, 3, 4, 5, 6, 7, 8]
-time_window = 1
+channels = [7, 8]
+time_window = 3
 fs = 250
 slide_window = 0.2
 delay_time = time_window + slide_window
 nfft = 1024
-freq_left = 8
-freq_right = 12
+freq_left = 6
+freq_right = 21
 order = 5
 
 # socket
@@ -36,8 +36,9 @@ port = 8080
 s.bind((host, port))
 s.listen(5)
 client, address = s.accept()
-
 time.sleep(2)
+winsound.Beep(600,1000)
+
 closed_time = 0  # 闭眼时刻
 while True:
     time.sleep(slide_window)
@@ -61,28 +62,31 @@ while True:
     if option == 0: # 7
         if closed_time + delay_time < time.time():
             client.send("0".encode("utf-8"))
+            winsound.Beep(600, 1000)
             closed_time = time.time()
-            winsound.Beep(600, 500)
+
     if option == 1: # 8
         if closed_time + delay_time < time.time():
             client.send("1".encode("utf-8"))
+            winsound.Beep(600, 1000)
             closed_time = time.time()
-            winsound.Beep(600, 500)
     if option == 2: # 9
         if closed_time + delay_time < time.time():
             client.send("2".encode("utf-8"))
+            winsound.Beep(600, 1000)
             closed_time = time.time()
-            winsound.Beep(600, 500)
     if option == 3: # 10
         if closed_time + delay_time < time.time():
             client.send("3".encode("utf-8"))
+            winsound.Beep(600, 1000)
             closed_time = time.time()
-            winsound.Beep(600, 500)
     if option == 4: # None
-        if closed_time + delay_time < time.time():
-            client.send("4".encode("utf-8"))
-            closed_time = time.time()
-            winsound.Beep(600, 500)
+        pass
+        # Do nothing
+        # if closed_time + delay_time < time.time():
+        #     client.send("4".encode("utf-8"))
+        #     closed_time = time.time()
+        #     winsound.Beep(600, 500)
 # End stream
 board.stop_stream()
 board.release_session()

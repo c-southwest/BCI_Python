@@ -1,5 +1,5 @@
-mkdir SSVEP_7_2
-mkdir SSVEP_8_2
-mkdir SSVEP_9_2
-mkdir SSVEP_10_2
-mkdir SSVEP_None_2
+mkdir SSVEP_7_wet
+mkdir SSVEP_8_wet
+mkdir SSVEP_9_wet
+mkdir SSVEP_10_wet
+mkdir SSVEP_None_wet

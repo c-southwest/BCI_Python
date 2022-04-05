@@ -13,17 +13,17 @@ from utils import Filters
 
 # f"./data/eye_closed/2021-12-13-22_52_42.csv"
 mode = "normal"
-filename = f"./data/SSVEP_7/2022-01-21-23_47_03.csv"
+filename = f"./data/SSVEP_7_wet/2022-01-26-00_46_22.csv"
 data = DataFilter.read_file(filename)
 
 eeg_channels = BoardShim.get_eeg_channels(0)
 
-print(len(data[7]))
+print(len(data[8]))
 
 #exit()
 fs = 250
 nfft = 1024
-f = data[7][1:1*fs]
+f = data[8][1:3*fs]
 f = f - np.mean(f)
 
 filtedData = Filters.BandStop(data=f, low=48, high=52, order=5, fs=fs)
