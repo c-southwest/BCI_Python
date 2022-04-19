@@ -50,7 +50,8 @@ train_data = np.array(train_data)
 train_label = np.array(train_label)
 val_data = np.array(val_data)
 val_label = np.array(val_label)
-
+print(eye_closed_psd[0][0].shape)
+exit()
 inputs = keras.Input(shape=eye_closed_psd[0][0].shape)  # 最后一个0代表数据本身，index=1为标签
 x = layers.Dense(4, activation="sigmoid")(inputs)
 #x = layers.Dense(8, activation="relu")(x)
