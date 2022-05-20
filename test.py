@@ -1,8 +1,8 @@
-# import socket  # 导入 socket 模块
+# import socket  
 #
-# s = socket.socket()  # 创建 socket 对象
-# host = "127.0.0.1"  # 获取本地主机名
-# port = 8080  # 设置端口号
+# s = socket.socket() 
+# host = "127.0.0.1"  
+# port = 8080  
 #
 # s.connect((host, port))
 # print(s.recv(1024).decode("utf-8"))
@@ -39,12 +39,12 @@ f = data[1][1:fs]
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.figure(figsize=(10,5))
 plt.subplot(1, 2, 1)
-plt.title("原始信号")
+plt.title("Raw signal")
 plt.plot(f)
 # raw psd data
 psd = welch(f, fs, nfft=nfft)
 plt.subplot(1, 2, 2)
-plt.title("对应PSD")
+plt.title("PSD")
 plt.plot(psd[0][:plot_range], psd[1][:plot_range])
 plt.show()
 
@@ -54,12 +54,12 @@ plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.figure(figsize=(10,5))
 
 plt.subplot(1, 2, 1)
-plt.title("用48-52Hz带阻滤波器去除50Hz工频干扰")
+plt.title("Remove 50Hz Line Noise with 48-52Hz BandStop Filter")
 plt.plot(f)
 # psd data
 psd = welch(f, fs, nfft=nfft)
 plt.subplot(1, 2, 2)
-plt.title("对应PSD")
+plt.title("PSD")
 plt.plot(psd[0][:plot_range], psd[1][:plot_range])
 plt.show()
 
@@ -69,12 +69,12 @@ plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.figure(figsize=(10,5))
 
 plt.subplot(1, 2, 1)
-plt.title("用12Hz低通滤波器去除高频干扰")
+plt.title("Remove high frequency noise with 12Hz LowPass Filter")
 plt.plot(f)
 # psd data
 psd = welch(f, fs, nfft=nfft)
 plt.subplot(1, 2, 2)
-plt.title("对应PSD")
+plt.title("PSD")
 plt.plot(psd[0][:plot_range], psd[1][:plot_range])
 plt.show()
 
@@ -84,11 +84,11 @@ plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.figure(figsize=(10,5))
 
 plt.subplot(1, 2, 1)
-plt.title("用8Hz高通滤波器去除低频干扰")
+plt.title("Remove low frequency noise with 8Hz HighPass Filter")
 plt.plot(f)
 # psd data
 psd = welch(f, fs, nfft=nfft)
 plt.subplot(1, 2, 2)
-plt.title("对应PSD")
+plt.title("PSD")
 plt.plot(psd[0][:plot_range], psd[1][:plot_range])
 plt.show()

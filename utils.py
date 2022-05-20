@@ -8,15 +8,15 @@ class Filters():
         # BandStop 48-52 hz
         notch_low = low*2/fs
         notch_high = high*2/fs
-        b, a = signal.butter(order, [notch_low, notch_high], 'bandstop')  # 配置滤波器 8 表示滤波器的阶数
-        filtedData = signal.filtfilt(b, a, data)  # f为要过滤的信号
+        b, a = signal.butter(order, [notch_low, notch_high], 'bandstop')  
+        filtedData = signal.filtfilt(b, a, data)  
         return filtedData
 
     @classmethod
     def LowPass(cls, data, freq, order=8, fs=250):
         # LowPass
         low_pass_param = freq * 2 / fs
-        b, a = signal.butter(order, low_pass_param, 'lowpass')   #配置滤波器 8 表示滤波器的阶数
+        b, a = signal.butter(order, low_pass_param, 'lowpass')  
         filtedData = signal.filtfilt(b, a, data)
         return filtedData
 

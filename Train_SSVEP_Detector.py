@@ -37,7 +37,7 @@ ssvep_none_psd = []
 for filename in ssvep_none_psd_files:
     ssvep_none_psd.append([np.load(ssvep_none_psd_dir + filename), [0, 0, 0, 0, 1]])
 
-# 分配训练集 和 验证集
+# create Validation set and Training set
 val = []
 num_val = 45
 val.extend(ssvep_7_psd[:num_val])
@@ -53,7 +53,7 @@ train.extend(ssvep_9_psd[num_val:])
 train.extend(ssvep_10_psd[num_val:])
 #train.extend(ssvep_none_psd[num_val:])
 
-# 打乱顺序
+# Shuffle
 np.random.shuffle(val)
 np.random.shuffle(train)
 
@@ -74,7 +74,7 @@ train_label = np.array(train_label)
 val_data = np.array(val_data)
 val_label = np.array(val_label)
 
-inputs = keras.Input(shape=ssvep_7_psd[0][0].shape)  # 最后一个0代表数据本身，index=1为标签
+inputs = keras.Input(shape=ssvep_7_psd[0][0].shape) 
 x = layers.Dense(8, activation="sigmoid")(inputs)
 #x = layers.Dense(8, activation="sigmoid")(x)
 # x = layers.Dense(16, activation="relu")(x)

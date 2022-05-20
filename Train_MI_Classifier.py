@@ -7,28 +7,28 @@ from tensorflow.keras import layers
 import tensorflow.keras as keras
 import numpy as np
 
-# 读取left
+# Read left data
 MI_left_psd_dir = "psd_data/MI_left/"
 MI_left_psd_files = os.listdir(MI_left_psd_dir)
 MI_left_psd = []
 for filename in MI_left_psd_files:
     MI_left_psd.append([np.load(MI_left_psd_dir + filename), [1,0,0]])
 
-# 读取normal
+# Read normal data
 normal_psd_dir = "psd_data/MI_none/"
 normal_psd_files = os.listdir(normal_psd_dir)
 normal_psd = []
 for filename in normal_psd_files:
     normal_psd.append([np.load(normal_psd_dir + filename), [0,1,0]])
 
-# 读取right
+# Read right data
 MI_right_psd_dir = "psd_data/MI_right/"
 MI_right_psd_files = os.listdir(MI_right_psd_dir)
 MI_right_psd = []
 for filename in MI_right_psd_files:
     MI_right_psd.append([np.load(MI_right_psd_dir + filename), [0,0,1]])
 
-# 分配训练集 和 验证集
+# create Validation set and Training set
 val = []
 num_val = 100
 val.extend(normal_psd[:num_val])
@@ -39,7 +39,7 @@ train.extend(normal_psd[num_val:])
 train.extend(MI_left_psd[num_val:])
 train.extend(MI_right_psd[num_val:])
 
-# 打乱顺序
+# Shuffle
 np.random.shuffle(val)
 np.random.shuffle(train)
 
@@ -60,7 +60,7 @@ train_label = np.array(train_label)
 val_data = np.array(val_data)
 val_label = np.array(val_label)
 
-inputs = keras.Input(shape=MI_left_psd[0][0].shape)  # 最后一个0代表数据本身，index=1为标签
+inputs = keras.Input(shape=MI_left_psd[0][0].shape) 
 
 x = layers.Dense(8, activation="relu",kernel_regularizer=keras.regularizers.l2(0.01))(inputs)
 x = layers.Dense(8, activation="relu",kernel_regularizer=keras.regularizers.l2(0.01))(x)

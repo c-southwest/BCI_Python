@@ -8,10 +8,9 @@ from brainflow.data_filter import DataFilter
 import matplotlib.pyplot as plt
 time.sleep(2)
 for i in range(3):
-    # 参数定义 Cyton板的id=0，我机器上的串口号为COM3
     params = BrainFlowInputParams()
     params.serial_port = "COM3"
-    board_id = BoardIds.CYTON_BOARD  # 合成版id=-1，cyton板id=0
+    board_id = BoardIds.CYTON_BOARD  # SYNTHETIC board id=-1, cyton board id=0
     board = BoardShim(board_id, params)
     #time.sleep(1)
     winsound.Beep(600,1000)
@@ -21,7 +20,7 @@ for i in range(3):
     board.prepare_session()
     board.start_stream()
 
-    # 收集t秒的数据
+    # acquire t seconds data
     t = 10
     mode = "SSVEP_None_wet"
     time.sleep(t)
